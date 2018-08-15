@@ -62,3 +62,9 @@ When run locally it'll also place output in the `coverage/` folder, so this shou
 * Move testable code out of `plugin.rb`
 * Add `coverage` to `.gitignore`
 * Add build status and coverage status badges to `README.md`
+
+## Licence
+
+[GPL-2.0](LICENSE)
+
+[`.travis.yml`](.travis.yml) and [`plugin_helper.rb`](plugin_helper.rb) also licensed under [MPL-2.0](https://www.mozilla.org/en-US/MPL/2.0/)
