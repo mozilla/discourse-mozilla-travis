@@ -5,11 +5,12 @@ echo "travis_fold:start:discourse_setup"
   export RAILS_ENV=test
   export COVERALLS=1
 
+  git pull || exit 1
+  git checkout origin/tests-passed || exit 1
+
   echo "gem 'simplecov'" >> Gemfile
   echo "gem 'coveralls'" >> Gemfile
 
-  git pull || exit 1
-  git checkout origin/tests-passed || exit 1
   bundle || exit 1
 
   echo "Cleaning up old test tmp data in tmp/test_data"
