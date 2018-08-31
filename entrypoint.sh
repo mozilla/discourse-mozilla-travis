@@ -36,5 +36,5 @@ echo "travis_fold:start:discourse_setup"
   echo "End of discourse setup"
 echo "travis_fold:end:discourse_setup"
 
-bundle exec rake plugin:spec[$PLUGIN_NAME]
-bundle exec rake plugin:qunit[$PLUGIN_NAME]
+bundle exec rake plugin:spec[$PLUGIN_NAME] || exit 1
+bundle exec rake plugin:qunit[$PLUGIN_NAME] || exit 1
