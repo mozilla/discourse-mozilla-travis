@@ -6,7 +6,7 @@ echo "travis_fold:start:discourse_setup"
   export COVERALLS=1
 
   git pull || exit 1
-  git checkout origin/tests-passed || exit 1
+  git checkout -f origin/tests-passed || exit 1
 
   echo "gem 'simplecov'" >> Gemfile
   echo "gem 'coveralls'" >> Gemfile
