@@ -5,7 +5,7 @@ echo "travis_fold:start:discourse_setup"
   export RAILS_ENV=test
   export COVERALLS=1
 
-  git pull || exit 1
+  git fetch origin tests-passed || exit 1
   git reset --hard origin/tests-passed || exit 1
 
   echo "gem 'simplecov'" >> Gemfile
