@@ -43,3 +43,5 @@ bundle exec rake plugin:spec[$PLUGIN_NAME] || exit 1
 if [ -d "/var/www/discourse/plugins/$PLUGIN_NAME/test" ]; then
   bundle exec rake plugin:qunit[$PLUGIN_NAME] || exit 1
 fi
+
+bundle exec rspec || exit 1
