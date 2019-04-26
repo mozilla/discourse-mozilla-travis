@@ -31,8 +31,8 @@ echo "travis_fold:start:discourse_setup"
   bundle exec rake db:create || exit 1
 
   echo "Running migrations"
-  bundle exec rake db:migrate || exit 1
-  
+  bundle exec rake db:migrate > /dev/null || exit 1
+
   echo "Running plugin migrations"
   LOAD_PLUGINS=1 bundle exec rake db:migrate || exit 1
 
