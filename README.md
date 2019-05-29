@@ -63,6 +63,10 @@ When run locally it'll also place output in the `coverage/` folder, so this shou
 * Add `coverage` to `.gitignore`
 * Add build status and coverage status badges to `README.md`
 
+## Bug reports
+
+Bug reports should be filed [by following the process described here](https://discourse.mozilla.org/t/where-do-i-file-bug-reports-about-discourse/32078).
+
 ## Licence
 
 [GPL-2.0](LICENSE)
