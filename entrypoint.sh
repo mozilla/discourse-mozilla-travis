@@ -13,6 +13,9 @@ echo "travis_fold:start:discourse_setup"
 
   bundle || exit 1
 
+  echo "Removing other plugins"
+  find plugins/ -mindepth 1 -maxdepth 1 ! -name $PLUGIN_NAME ! -path "plugins/discourse-narrative-bot" -type d -exec rm -rf {} +
+
   echo "Cleaning up old test tmp data in tmp/test_data"
   rm -fr tmp/test_data && mkdir -p tmp/test_data/redis && mkdir tmp/test_data/pg
 
