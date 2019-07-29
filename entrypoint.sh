@@ -5,8 +5,8 @@ echo "travis_fold:start:discourse_setup"
   export RAILS_ENV=test
   export COVERALLS=1
 
-  git fetch origin tests-passed > /dev/null || exit 1
-  git reset --hard origin/tests-passed > /dev/null || exit 1
+  git fetch origin tests-passed -q || exit 1
+  git reset --hard origin/tests-passed -q || exit 1
 
   echo "gem 'simplecov'" >> Gemfile
   echo "gem 'coveralls'" >> Gemfile
@@ -23,11 +23,11 @@ echo "travis_fold:start:discourse_setup"
   redis-server --dir tmp/test_data/redis > /dev/null &
 
   echo "Starting postgres"
-  /usr/lib/postgresql/10/bin/initdb -D tmp/test_data/pg
+  /usr/lib/postgresql/10/bin/initdb -D tmp/test_data/pg > /dev/null
   echo fsync = off >> tmp/test_data/pg/postgresql.conf
   echo full_page_writes = off >> tmp/test_data/pg/postgresql.conf
   echo shared_buffers = 500MB >> tmp/test_data/pg/postgresql.conf
-  /usr/lib/postgresql/10/bin/postmaster -D tmp/test_data/pg &
+  /usr/lib/postgresql/10/bin/postmaster -D tmp/test_data/pg > /dev/null &
   sleep 5
 
   echo "Creating database"
@@ -37,7 +37,7 @@ echo "travis_fold:start:discourse_setup"
   bundle exec rake db:migrate > /dev/null || exit 1
 
   echo "Running plugin migrations"
-  LOAD_PLUGINS=1 bundle exec rake db:migrate || exit 1
+  LOAD_PLUGINS=1 bundle exec rake db:migrate > /dev/null || exit 1
 
   echo "End of discourse setup"
 echo "travis_fold:end:discourse_setup"
