@@ -5,13 +5,13 @@ echo "travis_fold:start:discourse_setup"
   export RAILS_ENV=test
   export COVERALLS=1
 
-  git fetch origin tests-passed || exit 1
-  git reset --hard origin/tests-passed || exit 1
+  git fetch origin tests-passed > /dev/null || exit 1
+  git reset --hard origin/tests-passed > /dev/null || exit 1
 
   echo "gem 'simplecov'" >> Gemfile
   echo "gem 'coveralls'" >> Gemfile
 
-  bundle || exit 1
+  bundle > /dev/null || exit 1
 
   echo "Removing other plugins"
   find plugins/ -mindepth 1 -maxdepth 1 ! -name $PLUGIN_NAME ! -path "plugins/discourse-narrative-bot" -type d -exec rm -rf {} +
@@ -20,7 +20,7 @@ echo "travis_fold:start:discourse_setup"
   rm -fr tmp/test_data && mkdir -p tmp/test_data/redis && mkdir tmp/test_data/pg
 
   echo "Starting background redis"
-  redis-server --dir tmp/test_data/redis &
+  redis-server --dir tmp/test_data/redis > /dev/null &
 
   echo "Starting postgres"
   /usr/lib/postgresql/10/bin/initdb -D tmp/test_data/pg
@@ -31,7 +31,7 @@ echo "travis_fold:start:discourse_setup"
   sleep 5
 
   echo "Creating database"
-  bundle exec rake db:create || exit 1
+  bundle exec rake db:create > /dev/null || exit 1
 
   echo "Running migrations"
   bundle exec rake db:migrate > /dev/null || exit 1
