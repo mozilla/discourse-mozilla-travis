@@ -8,9 +8,9 @@ echo "travis_fold:start:discourse_setup"
   git fetch origin tests-passed -q || exit 1
   git reset --hard origin/tests-passed -q || exit 1
 
-  echo "gem 'simplecov'" >> Gemfile
-  echo "gem 'coveralls'" >> Gemfile
+  echo "gem 'coveralls', '>=0.8'" >> Gemfile
 
+  bundle update simplecov > /dev/null || exit 1
   bundle > /dev/null || exit 1
 
   echo "Removing other plugins"
