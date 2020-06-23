@@ -23,11 +23,11 @@ echo "travis_fold:start:discourse_setup"
   redis-server --dir tmp/test_data/redis > /dev/null &
 
   echo "Starting postgres"
-  /usr/lib/postgresql/10/bin/initdb -D tmp/test_data/pg > /dev/null
+  /usr/lib/postgresql/12/bin/initdb -D tmp/test_data/pg > /dev/null
   echo fsync = off >> tmp/test_data/pg/postgresql.conf
   echo full_page_writes = off >> tmp/test_data/pg/postgresql.conf
   echo shared_buffers = 500MB >> tmp/test_data/pg/postgresql.conf
-  /usr/lib/postgresql/10/bin/postmaster -D tmp/test_data/pg > /dev/null &
+  /usr/lib/postgresql/12/bin/postmaster -D tmp/test_data/pg > /dev/null &
   sleep 5
 
   echo "Creating database"
